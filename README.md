@@ -119,7 +119,7 @@ Directory tree for `hd-wallet-derive`
 #### Bitcoin transaction
 btc_acc = priv_key_to_account(BTCTEST,btc_PrivateKey)
 create_tx(BTCTEST,btc_acc,"mtPBiNx19kJ2tgYtD7KJs61jBMo7yvXVaq", 0.0005)
-# Send BTC transaction
+#### Send BTC transaction
 send_txn(BTCTEST,btc_acc,"mxks7M9hCwKt4f1bNaghbgzBLV4xkmkbo2", 0.0005)
 
 Confirmation on executed transaction(i tried to do another one, but got insufficient fund error)
