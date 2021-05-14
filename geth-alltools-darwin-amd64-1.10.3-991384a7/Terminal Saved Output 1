@@ -1,0 +1,918 @@
+Last login: Wed May 12 16:06:31 on ttys001
+(base) alibhatti@Alis-MacBook-Air ~ % cd desktop
+(base) alibhatti@Alis-MacBook-Air desktop % cd blockbuilding 
+(base) alibhatti@Alis-MacBook-Air blockbuilding % cd geth-alltools-darwin-amd64-1.10.3-991384a7
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node1 account new
+INFO [05-12|16:23:29.340] Maximum peer count                       ETH=50 LES=0 total=50
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Password: 
+Repeat password: 
+
+Your new key was generated
+
+Public address of the key:   0x843109c58B22990ee2fB6462f729e93b6C858eCE
+Path of the secret key file: node1/keystore/UTC--2021-05-12T20-23-34.960656000Z--843109c58b22990ee2fb6462f729e93b6c858ece
+
+- You can share your public address with anyone. Others need it to interact with you.
+- You must NEVER share the secret key with anyone! The key controls access to your funds!
+- You must BACKUP your key file! Without the key, it's impossible to access account funds!
+- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
+
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node2 account new
+INFO [05-12|16:23:54.106] Maximum peer count                       ETH=50 LES=0 total=50
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Password: 
+Repeat password: 
+
+Your new key was generated
+
+Public address of the key:   0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb
+Path of the secret key file: node2/keystore/UTC--2021-05-12T20-24-00.467078000Z--b5ae01bf36821bcbf6bb19f4afc0cc84c1a1a0bb
+
+- You can share your public address with anyone. Others need it to interact with you.
+- You must NEVER share the secret key with anyone! The key controls access to your funds!
+- You must BACKUP your key file! Without the key, it's impossible to access account funds!
+- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!
+
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./puppeth
++-----------------------------------------------------------+
+| Welcome to puppeth, your Ethereum private network manager |
+|                                                           |
+| This tool lets you create a new Ethereum network down to  |
+| the genesis block, bootnodes, miners and ethstats servers |
+| without the hassle that it would normally entail.         |
+|                                                           |
+| Puppeth uses SSH to dial in to remote servers, and builds |
+| its network components out of Docker containers using the |
+| docker-compose toolset.                                   |
++-----------------------------------------------------------+
+
+Please specify a network name to administer (no spaces, hyphens or capital letters please)
+> blockchaintwo
+
+Sweet, you can set this via --network=blockchaintwo next time!
+
+INFO [05-12|16:24:49.846] Administering Ethereum network           name=blockchaintwo
+WARN [05-12|16:24:49.849] No previous configurations found         path=/Users/alibhatti/.puppeth/blockchaintwo
+
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Configure new genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> 2
+
+What would you like to do? (default = create)
+ 1. Create new genesis from scratch
+ 2. Import already existing genesis
+> 1
+
+Which consensus engine to use? (default = clique)
+ 1. Ethash - proof-of-work
+ 2. Clique - proof-of-authority
+> 2
+
+How many seconds should blocks take? (default = 15)
+> 
+
+Which accounts are allowed to seal? (mandatory at least one)
+> 0x843109c58B22990ee2fB6462f729e93b6C858eCE
+> 0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb
+> 0x
+
+Which accounts should be pre-funded? (advisable at least one)
+> 0x843109c58B22990ee2fB6462f729e93b6C858eCE
+> 0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb
+> 0x
+
+Should the precompile-addresses (0x1 .. 0xff) be pre-funded with 1 wei? (advisable yes)
+> no
+
+Specify your chain/network ID if you want an explicit one (default = random)
+> 745
+INFO [05-12|16:26:18.314] Configured new genesis block 
+
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Manage existing genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> 2
+
+ 1. Modify existing configurations
+ 2. Export genesis configurations
+ 3. Remove genesis configuration
+> 2
+
+Which folder to save the genesis specs into? (default = current)
+  Will create blockchaintwo.json, blockchaintwo-aleth.json, blockchaintwo-harmony.json, blockchaintwo-parity.json
+> 
+INFO [05-12|16:27:10.358] Saved native genesis chain spec          path=blockchaintwo.json
+ERROR[05-12|16:27:10.359] Failed to create Aleth chain spec        err="unsupported consensus engine"
+ERROR[05-12|16:27:10.359] Failed to create Parity chain spec       err="unsupported consensus engine"
+INFO [05-12|16:27:10.360] Saved genesis chain spec                 client=harmony path=blockchaintwo-harmony.json
+
+What would you like to do? (default = stats)
+ 1. Show network stats
+ 2. Manage existing genesis
+ 3. Track new remote server
+ 4. Deploy network components
+> ^C
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node1 init blockchaintwo.json
+INFO [05-12|16:31:01.586] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [05-12|16:31:01.589] Set global gas cap                       cap=25,000,000
+INFO [05-12|16:31:01.589] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/chaindata cache=16.00MiB handles=16
+INFO [05-12|16:31:01.684] Writing custom genesis block 
+INFO [05-12|16:31:01.685] Persisted trie from memory database      nodes=3 size=455.00B time="386.752µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:31:01.687] Successfully wrote genesis state         database=chaindata hash=539484..95bbb3
+INFO [05-12|16:31:01.687] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/lightchaindata cache=16.00MiB handles=16
+INFO [05-12|16:31:01.781] Writing custom genesis block 
+INFO [05-12|16:31:01.782] Persisted trie from memory database      nodes=3 size=455.00B time="244.451µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:31:01.783] Successfully wrote genesis state         database=lightchaindata hash=539484..95bbb3
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node2 init blockchaintwo.json
+INFO [05-12|16:31:33.633] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [05-12|16:31:33.636] Set global gas cap                       cap=25,000,000
+INFO [05-12|16:31:33.636] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node2/geth/chaindata cache=16.00MiB handles=16
+INFO [05-12|16:31:33.735] Writing custom genesis block 
+INFO [05-12|16:31:33.737] Persisted trie from memory database      nodes=3 size=455.00B time="377.002µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:31:33.738] Successfully wrote genesis state         database=chaindata hash=539484..95bbb3
+INFO [05-12|16:31:33.738] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node2/geth/lightchaindata cache=16.00MiB handles=16
+INFO [05-12|16:31:33.833] Writing custom genesis block 
+INFO [05-12|16:31:33.835] Persisted trie from memory database      nodes=3 size=455.00B time="334.869µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:31:33.836] Successfully wrote genesis state         database=lightchaindata hash=539484..95bbb3
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node1 --unlock "0x843109c58B22990ee2fB6462f729e93b6C858eCE" --mine --rpc --allow-insecure-unlock
+INFO [05-12|16:32:11.681] Starting Geth on Ethereum mainnet... 
+INFO [05-12|16:32:11.682] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [05-12|16:32:11.685] Maximum peer count                       ETH=50 LES=0 total=50
+WARN [05-12|16:32:11.685] The flag --rpc is deprecated and will be removed June 2021, please use --http 
+WARN [05-12|16:32:11.686] Sanitizing cache to Go's GC limits       provided=4096 updated=2730
+INFO [05-12|16:32:11.687] Set global gas cap                       cap=25,000,000
+INFO [05-12|16:32:11.688] Allocated trie memory caches             clean=409.00MiB dirty=682.00MiB
+INFO [05-12|16:32:11.688] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/chaindata cache=1.33GiB handles=5120
+INFO [05-12|16:32:12.150] Opened ancient database                  database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/chaindata/ancient readonly=false
+INFO [05-12|16:32:12.152] Initialised chain configuration          config="{ChainID: 745 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: <nil>, Berlin: <nil>, YOLO v3: <nil>, Engine: clique}"
+INFO [05-12|16:32:12.153] Initialising Ethereum protocol           network=1 dbversion=<nil>
+INFO [05-12|16:32:12.155] Loaded most recent local header          number=0 hash=539484..95bbb3 td=1 age=7m7s
+INFO [05-12|16:32:12.155] Loaded most recent local full block      number=0 hash=539484..95bbb3 td=1 age=7m7s
+INFO [05-12|16:32:12.156] Loaded most recent local fast block      number=0 hash=539484..95bbb3 td=1 age=7m7s
+WARN [05-12|16:32:12.156] Failed to load snapshot, regenerating    err="missing or corrupted snapshot"
+INFO [05-12|16:32:12.156] Rebuilding state snapshot 
+INFO [05-12|16:32:12.157] Resuming state snapshot generation       root=9d0379..81f154 accounts=0 slots=0 storage=0.00B elapsed="702.434µs"
+INFO [05-12|16:32:12.157] Generated state snapshot                 accounts=2 slots=0 storage=140.00B elapsed=1.395ms
+INFO [05-12|16:32:12.158] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [05-12|16:32:12.233] Allocated fast sync bloom                size=1.33GiB
+WARN [05-12|16:32:12.234] Error reading unclean shutdown markers   error="leveldb: not found"
+INFO [05-12|16:32:12.234] Starting peer-to-peer node               instance=Geth/v1.10.3-stable-991384a7/darwin-amd64/go1.16.3
+INFO [05-12|16:32:12.234] Initialized state bloom                  items=3 errorrate=0.000 elapsed="79.01µs"
+INFO [05-12|16:32:12.235] Stored checkpoint snapshot to disk       number=0 hash=539484..95bbb3
+INFO [05-12|16:32:12.348] New local node record                    seq=1 id=81e5f8a1bb2e3588 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [05-12|16:32:12.349] Started P2P networking                   self=enode://320a5e0b762d963d86b3362aa347f5ce8468b370268c50040ae9695c2196126561c1d645e5db163a14b67e23d95bb6e7610368c89af91ecd629d13cf3796325c@127.0.0.1:30303
+INFO [05-12|16:32:12.352] IPC endpoint opened                      url=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth.ipc
+INFO [05-12|16:32:12.352] HTTP server started                      endpoint=127.0.0.1:8545 prefix= cors= vhosts=localhost
+Unlocking account 0x843109c58B22990ee2fB6462f729e93b6C858eCE | Attempt 1/3
+Password: INFO [05-12|16:32:15.252] New local node record                    seq=2 id=81e5f8a1bb2e3588 ip=65.95.203.199 udp=30303 tcp=30303
+
+INFO [05-12|16:32:22.684] Unlocked account                         address=0x843109c58B22990ee2fB6462f729e93b6C858eCE
+INFO [05-12|16:32:22.684] Transaction pool price threshold updated price=1,000,000,000
+INFO [05-12|16:32:22.684] Transaction pool price threshold updated price=1,000,000,000
+INFO [05-12|16:32:22.684] Etherbase automatically configured       address=0x843109c58B22990ee2fB6462f729e93b6C858eCE
+INFO [05-12|16:32:22.685] Commit new mining work                   number=1 sealhash=ce157d..9a4f9d uncles=0 txs=0 gas=0 fees=0 elapsed="103.45µs"
+INFO [05-12|16:32:22.686] Successfully sealed new block            number=1 sealhash=ce157d..9a4f9d hash=d77dbc..90e733 elapsed=1.892ms
+INFO [05-12|16:32:22.687] 🔨 mined potential block                  number=1 hash=d77dbc..90e733
+INFO [05-12|16:32:22.687] Commit new mining work                   number=2 sealhash=6ee182..c23fd5 uncles=0 txs=0 gas=0 fees=0 elapsed="459.198µs"
+INFO [05-12|16:32:22.687] Signed recently, must wait for others 
+INFO [05-12|16:32:24.551] Looking for peers                        peercount=0 tried=21 static=0
+INFO [05-12|16:32:35.732] Looking for peers                        peercount=0 tried=39 static=0
+INFO [05-12|16:32:46.083] Looking for peers                        peercount=0 tried=32 static=0
+INFO [05-12|16:32:56.177] Looking for peers                        peercount=0 tried=33 static=0
+^CINFO [05-12|16:33:01.893] Got interrupt, shutting down... 
+INFO [05-12|16:33:01.897] HTTP server stopped                      endpoint=127.0.0.1:8545
+INFO [05-12|16:33:01.898] IPC endpoint closed                      url=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth.ipc
+INFO [05-12|16:33:01.907] Deallocated state bloom                  items=3 errorrate=0.000
+INFO [05-12|16:33:01.907] Ethereum protocol stopped 
+INFO [05-12|16:33:01.907] Transaction pool stopped 
+INFO [05-12|16:33:01.909] Writing cached state to disk             block=1 hash=d77dbc..90e733 root=9d0379..81f154
+INFO [05-12|16:33:01.910] Persisted trie from memory database      nodes=0 size=0.00B   time="8.601µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:33:01.910] Writing snapshot state to disk           root=9d0379..81f154
+INFO [05-12|16:33:01.910] Persisted trie from memory database      nodes=0 size=0.00B   time=850ns     gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [05-12|16:33:01.910] Writing clean trie cache to disk         path=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/triecache threads=4
+INFO [05-12|16:33:01.914] Persisted the clean trie cache           path=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/triecache elapsed=3.100ms
+INFO [05-12|16:33:01.914] Blockchain stopped 
+(base) alibhatti@Alis-MacBook-Air geth-alltools-darwin-amd64-1.10.3-991384a7 % ./geth --datadir node1 --unlock "0x843109c58B22990ee2fB6462f729e93b6C858eCE" --mine --rpc --allow-insecure-unlock
+INFO [05-12|16:34:03.656] Starting Geth on Ethereum mainnet... 
+INFO [05-12|16:34:03.657] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [05-12|16:34:03.659] Maximum peer count                       ETH=50 LES=0 total=50
+WARN [05-12|16:34:03.659] The flag --rpc is deprecated and will be removed June 2021, please use --http 
+WARN [05-12|16:34:03.661] Sanitizing cache to Go's GC limits       provided=4096 updated=2730
+INFO [05-12|16:34:03.664] Set global gas cap                       cap=25,000,000
+INFO [05-12|16:34:03.664] Allocated trie memory caches             clean=409.00MiB dirty=682.00MiB
+INFO [05-12|16:34:03.664] Allocated cache and file handles         database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/chaindata cache=1.33GiB handles=5120
+INFO [05-12|16:34:03.825] Opened ancient database                  database=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/chaindata/ancient readonly=false
+INFO [05-12|16:34:03.827] Initialised chain configuration          config="{ChainID: 745 Homestead: 0 DAO: <nil> DAOSupport: false EIP150: 0 EIP155: 0 EIP158: 0 Byzantium: 0 Constantinople: 0 Petersburg: 0 Istanbul: 0, Muir Glacier: <nil>, Berlin: <nil>, YOLO v3: <nil>, Engine: clique}"
+INFO [05-12|16:34:03.829] Initialising Ethereum protocol           network=1 dbversion=8
+INFO [05-12|16:34:03.834] Loaded most recent local header          number=1 hash=d77dbc..90e733 td=2 age=1m41s
+INFO [05-12|16:34:03.834] Loaded most recent local full block      number=1 hash=d77dbc..90e733 td=2 age=1m41s
+INFO [05-12|16:34:03.834] Loaded most recent local fast block      number=1 hash=d77dbc..90e733 td=2 age=1m41s
+INFO [05-12|16:34:03.836] Loaded local transaction journal         transactions=0 dropped=0
+INFO [05-12|16:34:03.837] Regenerated local transaction journal    transactions=0 accounts=0
+WARN [05-12|16:34:03.837] Switch sync mode from fast sync to full sync 
+INFO [05-12|16:34:03.838] Starting peer-to-peer node               instance=Geth/v1.10.3-stable-991384a7/darwin-amd64/go1.16.3
+INFO [05-12|16:34:03.982] New local node record                    seq=3 id=81e5f8a1bb2e3588 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [05-12|16:34:03.983] Started P2P networking                   self=enode://320a5e0b762d963d86b3362aa347f5ce8468b370268c50040ae9695c2196126561c1d645e5db163a14b67e23d95bb6e7610368c89af91ecd629d13cf3796325c@127.0.0.1:30303
+INFO [05-12|16:34:03.985] IPC endpoint opened                      url=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth.ipc
+INFO [05-12|16:34:03.985] HTTP server started                      endpoint=127.0.0.1:8545 prefix= cors= vhosts=localhost
+Unlocking account 0x843109c58B22990ee2fB6462f729e93b6C858eCE | Attempt 1/3
+Password: 
+INFO [05-12|16:34:12.009] Unlocked account                         address=0x843109c58B22990ee2fB6462f729e93b6C858eCE
+INFO [05-12|16:34:12.010] Transaction pool price threshold updated price=1,000,000,000
+INFO [05-12|16:34:12.010] Transaction pool price threshold updated price=1,000,000,000
+INFO [05-12|16:34:12.010] Etherbase automatically configured       address=0x843109c58B22990ee2fB6462f729e93b6C858eCE
+INFO [05-12|16:34:12.010] Commit new mining work                   number=2 sealhash=d9b3c2..360c2e uncles=0 txs=0 gas=0 fees=0 elapsed="156.677µs"
+INFO [05-12|16:34:12.010] Signed recently, must wait for others 
+INFO [05-12|16:34:14.275] Looking for peers                        peercount=0 tried=13 static=0
+INFO [05-12|16:34:14.494] New local node record                    seq=4 id=81e5f8a1bb2e3588 ip=65.95.203.199 udp=30303 tcp=30303
+INFO [05-12|16:34:24.518] Looking for peers                        peercount=0 tried=28 static=0
+INFO [05-12|16:34:34.997] Looking for peers                        peercount=0 tried=22 static=0
+INFO [05-12|16:34:45.091] Looking for peers                        peercount=0 tried=32 static=0
+INFO [05-12|16:34:55.140] Looking for peers                        peercount=0 tried=38 static=0
+INFO [05-12|16:35:05.274] Looking for peers                        peercount=0 tried=30 static=0
+INFO [05-12|16:35:15.604] Looking for peers                        peercount=0 tried=34 static=0
+INFO [05-12|16:35:25.941] Looking for peers                        peercount=0 tried=24 static=0
+INFO [05-12|16:35:36.242] Looking for peers                        peercount=0 tried=29 static=0
+INFO [05-12|16:35:46.329] Looking for peers                        peercount=0 tried=28 static=0
+INFO [05-12|16:35:56.396] Looking for peers                        peercount=0 tried=28 static=0
+INFO [05-12|16:36:06.516] Looking for peers                        peercount=0 tried=42 static=0
+INFO [05-12|16:36:16.537] Looking for peers                        peercount=0 tried=28 static=0
+INFO [05-12|16:36:26.799] Looking for peers                        peercount=0 tried=37 static=0
+INFO [05-12|16:36:36.830] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|16:36:39.194] Chain reorg detected                     number=0 hash=539484..95bbb3 drop=1 dropfrom=d77dbc..90e733 add=1 addfrom=fb895b..e7c5b4
+INFO [05-12|16:36:39.195] Imported new chain segment               blocks=1 txs=0 mgas=0.000 elapsed=3.220ms     mgasps=0.000 number=1 hash=fb895b..e7c5b4 dirty=0.00B
+INFO [05-12|16:36:39.197] Commit new mining work                   number=2 sealhash=516e19..8ffe4e uncles=1 txs=0 gas=0 fees=0 elapsed="965.688µs"
+INFO [05-12|16:36:47.115] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:36:54.000] Successfully sealed new block            number=2 sealhash=516e19..8ffe4e hash=cb4cf5..5ab0a9 elapsed=14.804s
+INFO [05-12|16:36:54.000] 🔨 mined potential block                  number=2 hash=cb4cf5..5ab0a9
+INFO [05-12|16:36:54.002] Commit new mining work                   number=3 sealhash=f23319..e12d14 uncles=1 txs=0 gas=0 fees=0 elapsed=1.485ms
+INFO [05-12|16:36:54.002] Signed recently, must wait for others 
+INFO [05-12|16:36:57.242] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:37:07.400] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:37:17.534] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|16:37:27.536] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|16:37:37.539] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:37:47.608] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:37:57.687] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:38:08.147] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|16:38:18.175] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:38:28.185] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:38:38.258] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:38:48.387] Looking for peers                        peercount=2 tried=29 static=0
+INFO [05-12|16:38:58.539] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:39:08.547] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:39:18.813] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:39:28.813] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|16:39:38.827] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|16:39:48.834] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|16:39:58.841] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|16:40:09.600] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:40:19.643] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:40:29.835] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:40:39.900] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|16:40:49.900] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:41:00.169] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:41:10.512] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:41:20.573] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|16:41:31.333] Looking for peers                        peercount=1 tried=54 static=0
+INFO [05-12|16:41:41.359] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:41:51.862] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:42:02.074] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:42:12.352] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:42:22.425] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:42:32.742] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:42:42.767] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:42:52.767] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|16:43:02.822] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|16:43:13.128] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|16:43:23.415] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:43:33.451] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:43:43.640] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:43:53.983] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:44:04.110] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:44:14.133] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|16:44:24.542] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:44:34.607] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:44:44.607] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:44:51.582] Setting new local account                address=0x843109c58B22990ee2fB6462f729e93b6C858eCE
+INFO [05-12|16:44:51.584] Submitted transaction                    hash=0x82259ebf4350c39bb621b1e0fb82d4def10001bf3d2fba43741d738be155e8fa from=0x843109c58B22990ee2fB6462f729e93b6C858eCE nonce=0 recipient=0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb value=120,000,000,000,000,000,000,000
+INFO [05-12|16:44:54.367] Commit new mining work                   number=3 sealhash=d4006a..6aa268 uncles=1 txs=1 gas=21000 fees=2.1e-05 elapsed="660.169µs"
+INFO [05-12|16:44:54.367] Signed recently, must wait for others 
+INFO [05-12|16:44:54.628] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|16:45:04.873] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:45:14.975] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|16:45:25.087] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:45:35.227] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:45:45.570] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:45:55.612] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:46:05.869] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:46:15.869] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:46:26.071] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|16:46:36.266] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:46:46.476] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:46:56.572] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:47:06.576] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:47:16.760] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:47:26.935] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|16:47:36.940] Looking for peers                        peercount=1 tried=22 static=0
+INFO [05-12|16:47:47.199] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:47:57.239] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|16:48:07.329] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|16:48:17.445] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:48:27.791] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|16:48:37.823] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:48:48.155] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:48:58.167] Looking for peers                        peercount=2 tried=27 static=0
+INFO [05-12|16:49:08.563] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:49:18.631] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:49:28.637] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:49:38.975] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|16:49:49.231] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|16:49:59.495] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:50:09.494] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:50:19.543] Looking for peers                        peercount=2 tried=35 static=0
+INFO [05-12|16:50:29.580] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|16:50:39.940] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:50:50.262] Looking for peers                        peercount=1 tried=19 static=0
+INFO [05-12|16:51:00.336] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|16:51:10.947] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|16:51:20.955] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:51:30.959] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:51:41.235] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|16:51:51.315] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:52:02.196] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:52:12.268] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:52:22.337] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:52:32.364] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:52:42.510] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|16:52:52.687] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:53:02.995] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|16:53:13.026] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:53:23.285] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:53:33.445] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:53:43.579] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|16:53:53.740] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|16:54:04.016] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:54:14.045] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:54:24.147] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:54:34.163] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|16:54:44.186] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|16:54:54.219] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|16:55:04.408] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|16:55:14.477] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|16:55:24.662] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|16:55:34.747] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:55:45.081] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:55:56.098] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:56:06.111] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:56:16.110] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:56:26.128] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|16:56:28.968] Submitted transaction                    hash=0xe01f4e7fb06258c954c6313dad9e656532919a26f9216a803aa95e13f3c7927d from=0x843109c58B22990ee2fB6462f729e93b6C858eCE nonce=1 recipient=0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb value=1,290,000,000,000,000,000,000,000
+INFO [05-12|16:56:30.836] Commit new mining work                   number=3 sealhash=ec3143..f7ff10 uncles=1 txs=2 gas=42000 fees=0.001281 elapsed="901.334µs"
+INFO [05-12|16:56:30.836] Signed recently, must wait for others 
+INFO [05-12|16:56:36.759] Looking for peers                        peercount=1 tried=20 static=0
+INFO [05-12|16:56:46.765] Looking for peers                        peercount=1 tried=50 static=0
+INFO [05-12|16:56:57.029] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|16:57:07.363] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:57:17.396] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:57:27.397] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:57:37.509] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|16:57:47.563] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|16:57:57.743] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:58:07.894] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:58:17.993] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|16:58:28.082] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|16:58:38.538] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|16:58:48.583] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|16:58:58.864] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|16:59:09.004] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|16:59:19.026] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:59:29.027] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|16:59:39.211] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|16:59:49.323] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|16:59:59.369] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:00:09.390] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:00:19.438] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:00:29.688] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:00:39.701] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:00:49.740] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:00:59.770] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:01:09.786] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|17:01:20.038] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|17:01:30.054] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|17:01:40.082] Looking for peers                        peercount=2 tried=35 static=0
+INFO [05-12|17:01:50.382] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:02:00.382] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:02:10.494] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:02:20.660] Looking for peers                        peercount=1 tried=15 static=0
+INFO [05-12|17:02:30.662] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:02:40.662] Looking for peers                        peercount=1 tried=19 static=0
+INFO [05-12|17:02:50.699] Looking for peers                        peercount=1 tried=53 static=0
+INFO [05-12|17:03:00.751] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:03:10.751] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:03:20.762] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:03:30.859] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:03:40.985] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:03:51.018] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:04:01.104] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:04:11.126] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:04:21.149] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:04:31.435] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:04:41.456] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:04:51.503] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:05:01.654] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:05:11.690] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:05:22.323] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:05:32.337] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:05:42.413] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:05:52.432] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:06:02.511] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:06:12.633] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:06:22.646] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:06:33.108] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:06:43.403] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:06:53.425] Looking for peers                        peercount=1 tried=21 static=0
+INFO [05-12|17:07:03.443] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:07:14.148] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:07:24.345] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:07:34.400] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:07:44.403] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:07:54.487] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:08:04.810] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:08:14.979] Looking for peers                        peercount=2 tried=40 static=0
+INFO [05-12|17:08:25.089] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:08:35.186] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:08:45.395] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:08:55.497] Looking for peers                        peercount=1 tried=23 static=0
+INFO [05-12|17:09:05.816] Looking for peers                        peercount=1 tried=23 static=0
+INFO [05-12|17:09:15.822] Looking for peers                        peercount=1 tried=51 static=0
+INFO [05-12|17:09:25.880] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:09:36.484] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:09:46.569] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:09:56.762] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:10:06.898] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:10:17.147] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:10:27.351] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:10:37.947] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:10:48.014] Looking for peers                        peercount=1 tried=47 static=0
+INFO [05-12|17:10:58.268] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:11:08.272] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:11:19.230] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:11:29.233] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:11:39.236] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:11:49.264] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:11:59.529] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|17:12:09.586] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:12:19.657] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:12:29.671] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:12:39.671] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:12:49.992] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:13:00.003] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:13:10.023] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:13:20.274] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:13:30.309] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:13:40.313] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:13:50.371] Looking for peers                        peercount=1 tried=16 static=0
+INFO [05-12|17:14:00.708] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|17:14:10.839] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:14:21.177] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:14:31.181] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:14:41.192] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:14:51.824] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:15:01.828] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:15:11.910] Looking for peers                        peercount=1 tried=50 static=0
+INFO [05-12|17:15:22.049] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:15:32.242] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:15:42.318] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:15:52.358] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:16:02.396] Looking for peers                        peercount=1 tried=23 static=0
+INFO [05-12|17:16:12.405] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:16:22.527] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:16:32.745] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:16:42.786] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:16:52.794] Looking for peers                        peercount=2 tried=30 static=0
+INFO [05-12|17:17:03.550] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|17:17:13.797] Looking for peers                        peercount=1 tried=18 static=0
+INFO [05-12|17:17:23.964] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:17:34.123] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:17:45.439] Looking for peers                        peercount=1 tried=33 static=0
+ERROR[05-12|17:17:51.099] Snapshot extension registration failed   peer=63cbe74f err="peer connected on snap without compatible eth support"
+INFO [05-12|17:17:55.447] Looking for peers                        peercount=2 tried=31 static=0
+INFO [05-12|17:18:05.756] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:18:15.784] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:18:25.787] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:18:36.083] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:18:46.089] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:18:56.108] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:19:06.116] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:19:16.139] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:19:26.484] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:19:36.493] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:19:46.543] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:19:57.038] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:20:07.500] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:20:17.803] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:20:27.813] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:20:37.878] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:20:47.941] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:20:58.171] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:21:08.211] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:21:18.466] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:21:28.547] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:21:39.153] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:21:49.153] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:21:59.490] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:22:09.494] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|17:22:19.503] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:22:29.829] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:22:39.831] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:22:49.858] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:22:59.889] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:23:10.148] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:23:20.184] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:23:30.196] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:23:40.350] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:23:50.454] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:24:01.172] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:24:11.228] Looking for peers                        peercount=1 tried=50 static=0
+INFO [05-12|17:24:21.784] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:24:31.947] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:24:42.212] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:24:52.365] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:25:02.365] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:25:12.549] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:25:22.558] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|17:25:32.584] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:25:42.604] Looking for peers                        peercount=2 tried=31 static=0
+INFO [05-12|17:25:52.685] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:26:02.834] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:26:12.845] Looking for peers                        peercount=2 tried=40 static=0
+INFO [05-12|17:26:22.888] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:26:32.928] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:26:43.030] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:26:53.227] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:27:03.260] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:27:13.341] Looking for peers                        peercount=1 tried=42 static=0
+ERROR[05-12|17:27:13.512] Snapshot extension registration failed   peer=b2a05910 err="peer connected on snap without compatible eth support"
+INFO [05-12|17:27:24.286] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:27:34.397] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:27:44.563] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:27:54.691] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:28:04.774] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:28:14.895] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:28:24.901] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:28:34.903] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:28:44.908] Looking for peers                        peercount=1 tried=21 static=0
+INFO [05-12|17:28:54.947] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:29:05.194] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:29:15.363] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:29:25.653] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:29:35.704] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:29:45.720] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:29:55.757] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:30:05.995] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:30:16.009] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:30:26.342] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:30:36.346] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:30:46.361] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:30:56.382] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:31:06.392] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:31:16.396] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:31:26.436] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:31:36.737] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|17:31:47.097] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:31:57.150] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:32:07.150] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:32:17.540] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:32:27.837] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:32:38.141] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:32:48.170] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:34:08.129] Looking for peers                        peercount=1 tried=34 static=0
+^[INFO [05-12|17:34:17.711] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:34:27.920] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:34:37.973] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:34:47.993] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:34:58.058] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:35:08.102] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:35:12.992] Writing clean trie cache to disk         path=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/triecache threads=1
+INFO [05-12|17:35:12.996] Regenerated local transaction journal    transactions=2 accounts=1
+INFO [05-12|17:35:13.003] Persisted the clean trie cache           path=/Users/alibhatti/desktop/blockbuilding/geth-alltools-darwin-amd64-1.10.3-991384a7/node1/geth/triecache elapsed=10.854ms
+INFO [05-12|17:35:18.113] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:35:28.230] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:35:39.103] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:35:49.153] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:35:59.418] Looking for peers                        peercount=2 tried=41 static=0
+INFO [05-12|17:36:09.433] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:36:19.433] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:36:29.633] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:36:39.750] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:36:49.749] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:36:59.991] Looking for peers                        peercount=1 tried=35 static=0
+ERROR[05-12|17:37:01.892] Snapshot extension registration failed   peer=35ba3061 err="peer connected on snap without compatible eth support"
+INFO [05-12|17:37:10.063] Looking for peers                        peercount=2 tried=33 static=0
+INFO [05-12|17:37:20.096] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:37:30.988] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:37:41.130] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:37:51.473] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|17:38:01.667] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:38:11.722] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:38:21.793] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:38:32.433] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:38:42.450] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:38:52.454] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:39:02.707] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:39:12.755] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:39:22.786] Looking for peers                        peercount=1 tried=20 static=0
+INFO [05-12|17:39:33.008] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:39:43.195] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:39:53.238] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:40:03.337] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:40:13.369] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:40:23.432] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:40:33.736] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:40:43.755] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|17:40:53.813] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:41:03.915] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:41:14.171] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:41:24.179] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:41:34.382] Looking for peers                        peercount=1 tried=38 static=0
+ERROR[05-12|17:41:36.211] Snapshot extension registration failed   peer=9a9cbe96 err="peer connected on snap without compatible eth support"
+INFO [05-12|17:41:44.713] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:41:54.779] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:42:04.857] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:42:14.863] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:42:25.047] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:42:35.104] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:42:45.126] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:42:55.359] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:43:05.380] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:43:15.468] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:43:25.554] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:43:35.790] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:43:46.009] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:43:56.085] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:44:06.133] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:44:16.154] Looking for peers                        peercount=2 tried=34 static=0
+INFO [05-12|17:44:26.317] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:44:36.342] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:44:46.452] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:44:56.452] Looking for peers                        peercount=3 tried=28 static=0
+INFO [05-12|17:45:06.747] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:45:16.833] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:45:26.910] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:45:37.109] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|17:45:47.133] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:45:57.161] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:46:08.082] Looking for peers                        peercount=1 tried=18 static=0
+INFO [05-12|17:46:18.112] Looking for peers                        peercount=1 tried=54 static=0
+INFO [05-12|17:46:28.118] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:46:38.389] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:46:48.404] Looking for peers                        peercount=1 tried=21 static=0
+INFO [05-12|17:46:58.423] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:47:08.632] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:47:18.683] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:47:28.709] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:47:38.736] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:47:48.762] Looking for peers                        peercount=1 tried=21 static=0
+INFO [05-12|17:47:58.883] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|17:48:08.893] Looking for peers                        peercount=3 tried=45 static=0
+INFO [05-12|17:48:19.019] Looking for peers                        peercount=2 tried=38 static=0
+INFO [05-12|17:48:29.109] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|17:48:39.155] Looking for peers                        peercount=2 tried=33 static=0
+INFO [05-12|17:48:49.178] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:48:59.188] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:49:09.236] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:49:19.433] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:49:29.593] Looking for peers                        peercount=2 tried=37 static=0
+INFO [05-12|17:49:39.650] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:49:49.851] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:49:59.884] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:50:10.247] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:50:20.652] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:50:30.848] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:50:40.860] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:50:50.945] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:51:01.152] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|17:51:11.184] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:51:21.185] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:51:31.218] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:51:41.644] Looking for peers                        peercount=1 tried=39 static=0
+ERROR[05-12|17:51:42.081] Snapshot extension registration failed   peer=9a9cbe96 err="peer connected on snap without compatible eth support"
+INFO [05-12|17:51:51.886] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:52:01.897] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:52:11.942] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:52:22.024] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:52:32.073] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:52:42.216] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:52:52.676] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:53:02.804] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|17:53:12.846] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:53:22.885] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|17:53:33.010] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|17:53:43.027] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|17:53:53.045] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:54:03.085] Looking for peers                        peercount=1 tried=22 static=0
+INFO [05-12|17:54:13.101] Looking for peers                        peercount=1 tried=52 static=0
+INFO [05-12|17:54:23.393] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|17:54:33.484] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:54:43.513] Looking for peers                        peercount=2 tried=37 static=0
+INFO [05-12|17:54:53.632] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:55:03.791] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:55:14.000] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|17:55:24.019] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|17:55:34.038] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:55:44.250] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:55:54.343] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:56:04.372] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:56:14.542] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|17:56:24.567] Looking for peers                        peercount=1 tried=48 static=0
+INFO [05-12|17:56:34.575] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|17:56:44.608] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:56:54.619] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:57:04.728] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|17:57:14.899] Looking for peers                        peercount=1 tried=47 static=0
+INFO [05-12|17:57:24.934] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|17:57:34.939] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:57:44.957] Looking for peers                        peercount=2 tried=36 static=0
+INFO [05-12|17:57:55.264] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|17:58:05.267] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|17:58:15.277] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|17:58:25.288] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|17:58:35.309] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|17:58:45.332] Looking for peers                        peercount=2 tried=36 static=0
+INFO [05-12|17:58:55.335] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|17:59:05.335] Looking for peers                        peercount=1 tried=20 static=0
+INFO [05-12|17:59:15.479] Looking for peers                        peercount=1 tried=49 static=0
+INFO [05-12|17:59:25.479] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|17:59:35.507] Looking for peers                        peercount=1 tried=48 static=0
+INFO [05-12|17:59:45.640] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|17:59:55.841] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:00:05.842] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:00:15.897] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:00:26.066] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:00:36.554] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:00:46.613] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|18:00:56.704] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:01:07.222] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:01:17.257] Looking for peers                        peercount=2 tried=34 static=0
+INFO [05-12|18:01:27.834] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:01:37.839] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:01:47.902] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:01:57.996] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:02:08.205] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|18:02:18.212] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:02:28.329] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:02:38.507] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|18:02:48.515] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:02:58.544] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:03:08.545] Looking for peers                        peercount=2 tried=33 static=0
+INFO [05-12|18:03:18.823] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:03:29.168] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:03:39.306] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:03:49.444] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:03:59.771] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:04:10.145] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:04:20.150] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:04:30.170] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:04:40.329] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:04:50.929] Looking for peers                        peercount=1 tried=18 static=0
+INFO [05-12|18:05:01.111] Looking for peers                        peercount=1 tried=48 static=0
+INFO [05-12|18:05:11.122] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:05:21.146] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:05:31.155] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:05:41.889] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:05:52.102] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:06:02.147] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:06:12.207] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:06:22.262] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|18:06:32.311] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|18:06:42.324] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:06:52.571] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:07:02.641] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:07:12.793] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:07:22.856] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|18:07:32.876] Looking for peers                        peercount=1 tried=46 static=0
+INFO [05-12|18:07:43.203] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:07:53.549] Looking for peers                        peercount=1 tried=44 static=0
+INFO [05-12|18:08:03.576] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|18:08:13.745] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:08:23.771] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:08:33.837] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:08:44.242] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|18:08:54.273] Looking for peers                        peercount=1 tried=43 static=0
+INFO [05-12|18:09:04.299] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:09:14.492] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:09:24.582] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:09:34.808] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:09:44.965] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:09:55.356] Looking for peers                        peercount=2 tried=42 static=0
+INFO [05-12|18:10:05.408] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:10:15.606] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:10:25.746] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:10:35.749] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:10:45.748] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|18:10:55.777] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:11:05.976] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:11:16.041] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:11:26.078] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:11:36.372] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:11:46.401] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:11:56.478] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|18:12:06.551] Looking for peers                        peercount=1 tried=27 static=0
+INFO [05-12|18:12:16.675] Looking for peers                        peercount=1 tried=23 static=0
+INFO [05-12|18:12:26.686] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:12:37.017] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|18:12:47.223] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:12:57.568] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:13:07.659] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:13:17.787] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:13:27.803] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:13:37.819] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:13:47.895] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:13:58.121] Looking for peers                        peercount=1 tried=25 static=0
+INFO [05-12|18:14:08.121] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:14:18.190] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:14:28.482] Looking for peers                        peercount=1 tried=21 static=0
+INFO [05-12|18:14:38.545] Looking for peers                        peercount=1 tried=48 static=0
+INFO [05-12|18:14:48.576] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:14:58.668] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:15:08.690] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:15:18.751] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:15:28.943] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|18:15:38.997] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:15:49.155] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:15:59.312] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:16:09.313] Looking for peers                        peercount=1 tried=24 static=0
+INFO [05-12|18:16:19.729] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:16:29.841] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|18:16:39.863] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:16:49.947] Looking for peers                        peercount=2 tried=37 static=0
+INFO [05-12|18:16:52.241] Submitted transaction                    hash=0x905db8c0667a3ac31e4d58d54f66335742c003625538bc1854a4eeb3a374ca25 from=0x843109c58B22990ee2fB6462f729e93b6C858eCE nonce=2 recipient=0xb5aE01bF36821bCbF6bB19f4afC0CC84c1a1a0Bb value=1,200,000,000,000,000,000,000,000
+INFO [05-12|18:16:52.997] Commit new mining work                   number=3 sealhash=46ea12..2bf3f7 uncles=1 txs=3 gas=63000 fees=0.002541 elapsed=1.258ms
+INFO [05-12|18:16:52.997] Signed recently, must wait for others 
+INFO [05-12|18:17:00.023] Looking for peers                        peercount=1 tried=42 static=0
+INFO [05-12|18:17:10.064] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:17:20.109] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:17:30.196] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:17:40.355] Looking for peers                        peercount=1 tried=29 static=0
+INFO [05-12|18:17:50.827] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:18:00.940] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:18:11.198] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:18:21.200] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:18:31.399] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:18:41.475] Looking for peers                        peercount=2 tried=41 static=0
+INFO [05-12|18:18:51.584] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:19:01.651] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:19:11.774] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:19:21.775] Looking for peers                        peercount=2 tried=38 static=0
+INFO [05-12|18:19:32.298] Looking for peers                        peercount=1 tried=38 static=0
+ERROR[05-12|18:19:38.112] Snapshot extension registration failed   peer=3af25a30 err="peer connected on snap without compatible eth support"
+INFO [05-12|18:19:42.322] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:19:52.402] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:20:02.582] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:20:12.740] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:20:22.822] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:20:33.053] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:20:43.114] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:20:53.123] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:21:03.162] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|18:21:13.385] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:21:23.420] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:21:33.445] Looking for peers                        peercount=1 tried=41 static=0
+INFO [05-12|18:21:43.930] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:21:54.093] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:22:04.109] Looking for peers                        peercount=1 tried=37 static=0
+INFO [05-12|18:22:14.160] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:22:24.181] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:22:34.258] Looking for peers                        peercount=1 tried=40 static=0
+INFO [05-12|18:22:44.428] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:22:54.440] Looking for peers                        peercount=1 tried=35 static=0
+INFO [05-12|18:23:04.871] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:23:14.876] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:23:25.264] Looking for peers                        peercount=1 tried=28 static=0
+INFO [05-12|18:23:35.422] Looking for peers                        peercount=1 tried=39 static=0
+INFO [05-12|18:23:45.439] Looking for peers                        peercount=1 tried=38 static=0
+INFO [05-12|18:23:55.515] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:24:05.778] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:24:15.963] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:24:26.178] Looking for peers                        peercount=1 tried=32 static=0
+INFO [05-12|18:24:36.548] Looking for peers                        peercount=1 tried=33 static=0
+INFO [05-12|18:24:46.633] Looking for peers                        peercount=1 tried=30 static=0
+INFO [05-12|18:24:56.679] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:25:06.748] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:25:17.052] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:25:27.057] Looking for peers                        peercount=1 tried=34 static=0
+INFO [05-12|18:25:37.060] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:25:47.064] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:25:57.128] Looking for peers                        peercount=1 tried=36 static=0
+INFO [05-12|18:26:07.399] Looking for peers                        peercount=1 tried=26 static=0
+INFO [05-12|18:26:17.447] Looking for peers                        peercount=1 tried=45 static=0
+INFO [05-12|18:26:27.449] Looking for peers                        peercount=1 tried=31 static=0
+INFO [05-12|18:26:37.807] Looking for peers                        peercount=1 tried=35 static=0
+
